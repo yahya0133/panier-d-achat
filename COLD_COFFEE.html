@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stayle.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[url(ord.jpg)]">
+    <span class="slider-container">
+        <div class="slider" id="productSlider">
+            <div class="product">
+                <div >
+                    <img src="Iced Coffee.jpeg " alt="">
+                    <h2>Iced Coffee</h2>
+                    <h3>8.00$ <button  onclick="addToCart('Iced Coffee', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Cold Brew.jpeg" alt="">
+                    <h2>Cold Brew</h2>
+                    <h3>8.00$ <button  onclick="addToCart('Cold Brew', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Iced Latte.jpeg" alt="">
+                    <h2>Iced Latte</h2>
+                    <h3>8.00$ <button  onclick="addToCart('Iced Latte', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Iced Americano.jpeg" alt="">
+                    <h2>Iced Americano</h2>
+                    <h3>8.00$ <button  onclick="addToCart('Iced Americano', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Iced Mocha.jpeg" alt="">
+                    <h2>Iced Mocha</h2>
+                    <h3>8.00$ <button  onclick="addToCart('Iced Mocha', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Frappuccino.jpeg" alt="">
+                    <h2>Frappuccino</h2>
+                    <h3>8.00$ <button  onclick="addToCart('Frappuccino', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Affogato.jpeg" alt="">
+                    <h2>Affogato</h2>
+                    <h3>8.00$ <button  onclick="addToCart('Affogato', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Nitro Cold Brew.webp" alt="">
+                    <h2>Nitro Cold Brew</h2>
+                    <h3>8.00$ <button  onclick="addToCart('Nitro Cold Brew', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn">◀</button>
+            <button class="nav-btn" id="nextBtn">▶</button>
+        </div>
+    </span>
+    <script>
+        const slider = document.getElementById('productSlider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const totalSlides = 5; 
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                slider.style.transform = `translateX(-${currentSlide * (100/4)}%)`;
+            }
+        });
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                slider.style.transform = `translateX(-${currentSlide * (100/4)}%)`;
+            }
+        });
+    </script>
+    <script>
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push({ name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    </script>
+</body>
+</html>

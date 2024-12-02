@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stayle.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[url(ord.jpg)]" >
+    <span class="slider-container">
+        <div  class="slider" id="productSlider" >
+            <div class="product ">
+                <div class="product1">
+                    <img src="tram.jpeg" alt="">
+                    <h2>Tiramisu</h2>
+                    <h3>8.00$ <button  onclick="addToCart('Tiramisu', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div>
+                    <img src="Cheesecake.jpeg " alt="">
+                    <h2>Cheesecake</h2>
+                    <h3>8.00$ <button onclick="addToCart('Cheesecake', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div>
+                    <img src="Croissant.jpeg" alt="">
+                    <h2>Croissant</h2>
+                    <h3>8.00$ <button onclick="addToCart('Croissant', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div>
+                    <img src="Macarons.jpeg" alt="">
+                    <h2>Macarons</h2>
+                    <h3>8.00$ <button onclick="addToCart('Macarons', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div>
+                    <img src="Affogato.jpeg" alt="">
+                    <h2>Affogato</h2>
+                    <h3>8.00$ <button onclick="addToCart('Affogato', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div>
+                    <img src="Chocolate Cake.jpeg" alt="">
+                    <h2>Chocolate Cake</h2>
+                    <h3>8.00$ <button onclick="addToCart('Chocolate Cake', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div>
+                    <img src="Scones.jpeg" alt="">
+                    <h2>Scones</h2>
+                    <h3>8.00$ <button onclick="addToCart('Scones', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div>
+                    <img src="Baklava.jpeg" alt="">
+                    <h2>Baklava</h2>
+                    <h3>8.00$ <button onclick="addToCart('Baklava', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+        </div>
+            <div class="navigation">
+                <button class="nav-btn" id="prevBtn">◀</button>
+                <button class="nav-btn" id="nextBtn">▶</button>
+            </div>
+    </span>
+    <script>
+        const slider = document.getElementById('productSlider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const totalSlides = 5; 
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                slider.style.transform = `translateX(-${currentSlide * (100/4)}%)`;
+            }
+        });
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                slider.style.transform = `translateX(-${currentSlide * (100/4)}%)`;
+            }
+        });
+    </script>
+    <script>
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push({ name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    </script>
+</body>
+</html>

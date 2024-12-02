@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stayle.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[url(ord.jpg)]">
+    <span class="slider-container ">
+        <div class="slider " id="productSlider">
+            <div class="product">
+                <div >
+                    <img src="./Pomegranate Juice.jpeg" alt="">
+                    <h2>Pomegranate Juice</h2>
+                    <h3>8.00$ <button onclick="addToCart('Pomegranate Juice', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Orange Juice.jpeg" alt="">
+                    <h2>Orange Juice</h2>
+                    <h3>8.00$ <button onclick="addToCart(' Orange Juice', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Apple Juice.jpeg" alt="">
+                    <h2>Apple Juice</h2>
+                    <h3>8.00$ <button onclick="addToCart('Apple Juice', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Grape Juice.jpeg" alt="">
+                    <h2>Grape Juice</h2>
+                    <h3>8.00$ <button onclick="addToCart('Grape Juice', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Cranberry Juice.jpeg" alt="">
+                    <h2>Cranberry Juice</h2>
+                    <h3>8.00$ <button onclick="addToCart('Cranberry Juice', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Pineapple Juice.jpeg" alt="">
+                    <h2>Pineapple Juice</h2>
+                    <h3>8.00$ <button onclick="addToCart('Pineapple Juice', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="juice.jpeg" alt="">
+                    <h2>Juice</h2>
+                    <h3>8.00$ <button onclick="addToCart('Juice', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Carrot Juice.jpeg" alt="">
+                    <h2>Carrot Juice</h2>
+                    <h3>8.00$ <button onclick="addToCart('Carrot Juice', 8.00)">Order Now</button></h3>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn">◀</button>
+            <button class="nav-btn" id="nextBtn">▶</button>
+        </div>
+    </span>
+    <script>
+        const slider = document.getElementById('productSlider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const totalSlides = 5; 
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                slider.style.transform = `translateX(-${currentSlide * (100/4)}%)`;
+            }
+        });
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                slider.style.transform = `translateX(-${currentSlide * (100/4)}%)`;
+            }
+        });
+    </script>
+    <script>
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push({ name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    </script>
+</body>
+</html>

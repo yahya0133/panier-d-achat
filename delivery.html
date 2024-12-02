@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html ang="en"> 
+<head> 
+    <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./stayle.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"/>
+</head> 
+<body class="body1"> 
+    <video autoplay muted loop id="myVideo">
+        <source src="dimimg.webm" type="video/webm">
+    </video>
+    <button class="fixed top-5 right-5 p-2 rounded-full cursor-pointer bg-transparent text-2xl hover:scale-110 transition-transform duration-300" id="toggle-mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <section class="sectc flex flex-row flex-nowrap justify-between content-center items-center gap-7"> 
+        <div class="flex flex-col gap-4">
+            <div class="contact1  flex flex-col">
+                <input required="" type="text" name="text" autocomplete="off" class="input rounded-lg w-100 h-8 border-2 border-cyan-600 hover:border-blue-400 text-blue-600 pl-2">
+                <label class="user-label" for ="nom">Nom</label>
+            </div>
+            <div class="contact1  flex flex-col">
+                <input required="" type="text" name="text" autocomplete="off" class="input rounded-lg w-100 h-8 border-2 border-cyan-600 hover:border-blue-400 text-blue-600 pl-2">
+                <label class="user-label" for ="prenom">Prenom</label>
+            </div>
+            <div class="contact1  flex flex-col">
+                <input required="" type="text" name="text" autocomplete="off" class="input rounded-lg w-100 h-8 border-2 border-cyan-600 hover:border-blue-400 text-blue-600 pl-2">
+                <label class="user-label" for ="phone">N°Phone</label>
+            </div>
+            <div class="contact1  flex flex-col">
+                <input required="" type="text" name="text" autocomplete="off" class="input rounded-lg w-100 h-8 border-2 border-cyan-600 hover:border-blue-400 text-blue-600 pl-2">
+                <label class="user-label" for ="other">Autre</label>
+            </div>
+            <div class="contact1  flex flex-col">
+                <input required="" type="text" name="text" autocomplete="off" class="input rounded-lg w-100 h-8 border-2 border-cyan-600 hover:border-blue-400 text-blue-600 pl-2">
+                <label class="user-label" for ="other">Card Pank</label>
+            </div>
+            <div class="contact1  flex flex-col">
+                <input required="" type="text" name="text" autocomplete="off" class="input rounded-lg w-100 h-8 border-2 border-cyan-600 hover:border-blue-400 text-blue-600 pl-2">
+                <label class="user-label" for ="other">Mot de passe</label>
+            </div>
+            <div id="info-card">Ather contact</div>
+            <div class="social-icons flex flex-row gap-4 justify-evenly">
+                <a href="#" class="icon facebook text-blue-600" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="icon instagram text-purple-600" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="icon whatsapp text-green-600" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>  
+            <div class="flex flex-row gap-20 items-center">
+                <button class="bg-red-900 w-100 border border-indigo-slate-100 rounded-md px-4 py-2 text-white hover:bg-orange-700">
+                    Ordre
+                </button>
+                <a href="./index.html">
+                    <button class="bg-red-900 w-100 border border-indigo-slate-100 rounded-md px-4 py-2 text-white hover:bg-orange-700">
+                        Retour
+                    </button>
+                </a>    
+            </div>
+        </div>
+        <div> 
+            <div class="total-price text-4xl"> 
+                <span>nombre de ordre</span>
+                <span class="nb text-red-800" id="nb">0 ordre</span>
+                <span>Total price:</span> 
+                <span class="total text-red-800" id="total">0 DT</span>
+            </div>
+            <div id="ordstick" class="w-[500px] h-[30%] bg-slate-400 flex ">
+            </div>
+            <div class="w-[100%] h-[50%] p-1 text-black">
+                <div id="cart-items" class="gap-4 flex flex-row flex-wrap content-center justify-start items-center">
+                </div>
+            </div>
+        </div>
+    </section>
+        <script>
+            window.onload = function() {
+                const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                const container = document.getElementById('cart-items');
+                let total = 0;
+                let nb=0;
+                cart.forEach((item, index) => {
+                    total += item.price;
+                    nb++;
+                    const div = document.createElement('div');
+                    div.className = 'w-[50%] bg-white p-4 rounded shadow flex justify-between items-center';
+                    div.innerHTML = `
+                        <span>${item.name}</span>
+                        <span>$${item.price.toFixed(2)}</span>
+                        <i class="fas fa-trash-alt  bg-red-500 text-white p-2 rounded" onclick="removeItem(${index})" id="move-1"></i>
+                    `;
+                    container.appendChild(div);
+                });
+                document.getElementById('total').textContent = total.toFixed(2);
+                document.getElementById('nb').textContent = nb;
+                window.removeItem = function(index) {
+                    cart.splice(index, 1);  
+                    localStorage.setItem('cart', JSON.stringify(cart));  
+                    location.reload(); 
+                }
+            }
+        </script>      
+    
+</body>
+</html>

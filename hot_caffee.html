@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stayle.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[url(ord.jpg)]">
+    
+    
+
+    <span class="slider-container">
+        <div class="slider" id="productSlider">
+            <div class="product">
+                <div >
+                    <img src="Espresso.jpeg" alt="">
+                    <h2>Espresso</h2>
+                    <h3>8.00$ <button>Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Americano.jpeg" alt="">
+                    <h2>Americano</h2>
+                    <h3>8.00$ <button>Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Latte.jpeg" alt="">
+                    <h2>Latte</h2>
+                    <h3>8.00$ <button>Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Cappuccino.jpeg" alt="">
+                    <h2>Cappuccino</h2>
+                    <h3>8.00$ <button>Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Mocha.jpeg" alt="">
+                    <h2>Mocha</h2>
+                    <h3>8.00$ <button>Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Flat White.jpeg" alt="">
+                    <h2>Flat White</h2>
+                    <h3>8.00$ <button>Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Macchiato.jpeg" alt="">
+                    <h2>Macchiato</h2>
+                    <h3>8.00$ <button>Order Now</button></h3>
+                </div>
+            </div>
+            <div class="product">
+                <div >
+                    <img src="Cortado.jpeg" alt="">
+                    <h2>Cortado</h2>
+                    <h3>8.00$ <button>Order Now</button></h3>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn">◀</button>
+            <button class="nav-btn" id="nextBtn">▶</button>
+        </div>
+    </span>
+    <script>
+        const slider = document.getElementById('productSlider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const totalSlides = 5; // Changed to accommodate 4-product view
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                slider.style.transform = `translateX(-${currentSlide * (100/4)}%)`;
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                slider.style.transform = `translateX(-${currentSlide * (100/4)}%)`;
+            }
+        });
+    </script>
+</body>
+</html>
